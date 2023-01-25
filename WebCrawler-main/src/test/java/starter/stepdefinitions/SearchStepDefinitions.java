@@ -32,7 +32,6 @@ public class SearchStepDefinitions {
     @Given("I am on the Google search page")
     public void I_visit_google() {
         driver.get("https://www.google.com");
-
       pause(2500);
     }
 
@@ -73,8 +72,8 @@ public class SearchStepDefinitions {
     }
     @Then("Result should be visible in new tab")
     public void CheckResultsNewTab() {
-        driver.findElement(By.xpath("//*[@id=\"cc-window\"]/div[5]/a[1]"));
         driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
         assertTrue(driver.findElement(By.xpath("//*[@id=\"cc-window\"]/div[5]/a[1]")).isDisplayed());
+        Serenity.takeScreenshot();
     }
 }
