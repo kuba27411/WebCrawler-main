@@ -6,4 +6,4 @@ Feature: Search Google by keyword
     When I search for "Best Places to Live"
     And View images search
     And Open 3rd image in new tab
-    Then Result should be visible in new tab
+    Then Should see 2 tabs open

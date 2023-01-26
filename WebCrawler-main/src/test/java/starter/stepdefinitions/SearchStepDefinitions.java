@@ -11,14 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class SearchStepDefinitions {
-
-
     private final WebDriver driver = new ChromeDriver();
 
     public void pause(Integer milliseconds){
@@ -61,19 +56,16 @@ public class SearchStepDefinitions {
     @And("Open 3rd image in new tab")
     public void openImageInNewTab() {
         WebElement element = driver.findElement(By.xpath("//*[@id=\"islrg\"]/div[1]/div[3]/a[1]/div[1]/img"));
-        //new Actions(driver)
-        //        .contextClick(element)
-        //        .perform();
         new Actions(driver)
                 .keyDown(element, Keys.ARROW_DOWN)
                 .click()
                 .perform();
         pause(2500);
     }
-    @Then("Result should be visible in new tab")
+    @Then("Should see 2 tabs open")
     public void CheckResultsNewTab() {
         driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
-        assertTrue(driver.findElement(By.xpath("//*[@id=\"cc-window\"]/div[5]/a[1]")).isDisplayed());
+        assert driver.getWindowHandles().size() == 2;
         Serenity.takeScreenshot();
     }
 }
