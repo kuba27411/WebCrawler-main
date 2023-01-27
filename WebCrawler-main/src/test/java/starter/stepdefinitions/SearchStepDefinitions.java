@@ -4,13 +4,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.serenitybdd.core.Serenity;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+
 import java.util.concurrent.TimeUnit;
 
 public class SearchStepDefinitions {
@@ -66,6 +66,6 @@ public class SearchStepDefinitions {
     public void CheckResultsNewTab() {
         driver.getWindowHandles().forEach(tab->driver.switchTo().window(tab));
         assert driver.getWindowHandles().size() == 2;
-        Serenity.takeScreenshot();
+        driver.quit();
     }
 }
